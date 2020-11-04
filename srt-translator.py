@@ -3,78 +3,9 @@ import sys
 import time
 import argparse
 import re
+from tqdm import tqdm
 from colorama import Fore, Back, Style 
 from google.cloud import translate
-
-##### Progress bar start #####
-def format_interval(t):
-    mins, s = divmod(int(t), 60)
-    h, m = divmod(mins, 60)
-    if h:
-        return '%d:%02d:%02d' % (h, m, s)
-    else:
-        return '%02d:%02d' % (m, s)
-
-
-def format_meter(n, total, elapsed):
-    if n > total:
-        total = None
-    elapsed_str = format_interval(elapsed)
-    rate = '%5.2f' % (n / elapsed) if elapsed else '?'
-    if total:
-        frac = float(n) / total
-        N_BARS = 10
-        bar_length = int(frac * N_BARS)
-        bar = '#' * bar_length + '-' * (N_BARS - bar_length)
-        percentage = '%3d%%' % (frac * 100)
-        left_str = format_interval(elapsed / n * (total - n)) if n else '?'
-        return '|%s| %d/%d %s [elapsed: %s left: %s, %s iters/sec]' % (bar, n, total, percentage, elapsed_str, left_str, rate)
-    else:
-        return '%d [elapsed: %s, %s iters/sec]' % (n, elapsed_str, rate)
-
-
-class StatusPrinter(object):
-    def __init__(self, file):
-        self.file = file
-        self.last_printed_len = 0
-
-    def print_status(self, s):
-        self.file.write('\r' + s + ' ' * max(self.last_printed_len - len(s), 0))
-        self.file.flush()
-        self.last_printed_len = len(s)
-
-
-def tqdm(iterable, desc='', total=None, leave=False, file=sys.stderr, mininterval=0.5, miniters=1):
-    if total is None:
-        try:
-            total = len(iterable)
-        except TypeError:
-            total = None
-
-    prefix = desc + ': ' if desc else ''
-    sp = StatusPrinter(file)
-    sp.print_status(prefix + format_meter(0, total, 0))
-    start_t = last_print_t = time.time()
-    last_print_n = 0
-    n = 0
-    for obj in iterable:
-        yield obj
-        n += 1
-        if n - last_print_n >= miniters:
-            cur_t = time.time()
-            if cur_t - last_print_t >= mininterval:
-                sp.print_status(prefix + format_meter(n, total, cur_t - start_t))
-                last_print_n = n
-                last_print_t = cur_t
-    if not leave:
-        sp.print_status('')
-        sys.stdout.write('\r')
-    else:
-        if last_print_n < n:
-            cur_t = time.time()
-            sp.print_status(prefix + format_meter(n, total, cur_t - start_t))
-        file.write('\n')
-##### Progress bar end #####
 
 '''
   * @desc load input file function 
@@ -190,7 +121,7 @@ if __name__ == '__main__':
     translated = list()
 
     # Read each line of input file
-    for d in tqdm(load_file(args.ifile), desc="Read each line"):
+    for d in tqdm(load_file(args.ifile), desc="Processing SRT file", colour="blue"):
         # do something if the line contains letters
         # else just append the line into _work_list list
         if d and re.match('[a-zA-Z-]+',d):

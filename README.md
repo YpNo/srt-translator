@@ -62,7 +62,7 @@ optional arguments:
 Example: 
 ```
 $ python3 srt-translator.py -p my_gcp_project_id my_serie.S01E01.translate_me.srt
-Input Text Loop: |####------| 415/1029  40% [elapsed: 08:09 left: 12:04,  0.85 iters/sec]
+Processing SRT file::  39%|███████████████████████████████████▊                     | 1053/2731 [01:28<02:51,  9.79it/s]
 ```
 
 The output file will be `my_serie.S01E01.translate_me-translated.srt` in your current directory.
