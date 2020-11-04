@@ -36,7 +36,7 @@ After SDK is installed, do the following actions and follow interactive instruct
 `gcloud auth login`  
 `gcloud auth application-default login`  
 
-**WARNING**: If you have python errors with gcloud commands, you must set an environment variable to use Python2 with Google SDK:
+**WARNING**: If you have python errors with gcloud commands, you must set an environment variable to use Python2 with Google SDK:  
 `export CLOUDSDK_PYTHON=python2.7` (adjust the 2.x version according to your Python2 version).  
 
 
