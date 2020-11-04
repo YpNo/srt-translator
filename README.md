@@ -66,3 +66,7 @@ Processing SRT file::  39%|█████████████████�
 ```
 
 The output file will be `my_serie.S01E01.translate_me-translated.srt` in your current directory.  
+
+## Supported Languages
+
+See: https://cloud.google.com/translate/docs/languages   
