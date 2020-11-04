@@ -23,21 +23,21 @@ This project is strongly inspired by [mkahn5/translate-book](https://github.com/
 
 ## Configure your environment:
 
-Install python3 in your system if not already installed.
-`brew install python3` - for MacOS
-`sudo apt install python3` - for Debian/Ubuntu
+Install python3 in your system if not already installed.  
+`brew install python3` - for MacOS  
+`sudo apt install python3` - for Debian/Ubuntu  
 
-Install python's packages requirements.
-`pip3 install -r requirements.txt --user`
+Install python's packages requirements.  
+`pip3 install -r requirements.txt --user`  
 
-Install The Google Cloud Platform SDK (see above) and Auth.
-After SDK is installed, do the following actions and follow interactive instructions:
-`gcloud init`
-`gcloud auth login`
-`gcloud auth application-default login`
+Install The Google Cloud Platform SDK (see above) and Auth.  
+After SDK is installed, do the following actions and follow interactive instructions:  
+`gcloud init`  
+`gcloud auth login`  
+`gcloud auth application-default login`  
 
 **WARNING**: If you have python errors with gcloud commands, you must set an environment variable to use Python2 with Google SDK:
-`export CLOUDSDK_PYTHON=python2.7` (adjust the 2.x version according to your Python2 version)
+`export CLOUDSDK_PYTHON=python2.7` (adjust the 2.x version according to your Python2 version).  
 
 
 ## Usage
@@ -57,7 +57,7 @@ optional arguments:
                         Set target language. Default: fr
 ```
 
-**Information**: You must provide your GCP project ID. You have two ways to set it: with `-p`/`--project_id` parameter or with `TRANSLATE_PROJECT_ID` environment variable
+**Information**: You must provide your GCP project ID. You have two ways to set it: with `-p`/`--project_id` parameter or with `TRANSLATE_PROJECT_ID` environment variable.  
 
 Example: 
 ```
@@ -65,4 +65,4 @@ $ python3 srt-translator.py -p my_gcp_project_id my_serie.S01E01.translate_me.sr
 Processing SRT file::  39%|███████████████████████████████████▊                     | 1053/2731 [01:28<02:51,  9.79it/s]
 ```
 
-The output file will be `my_serie.S01E01.translate_me-translated.srt` in your current directory.
+The output file will be `my_serie.S01E01.translate_me-translated.srt` in your current directory.  
