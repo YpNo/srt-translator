@@ -164,8 +164,8 @@ if __name__ == '__main__':
     # Script Parser and arguments management
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--project_id", help="GCP Project ID", type=str)
-    parser.add_argument("-s", "--source_language", help="Set source language", type=str, default="en-US")
-    parser.add_argument("-t", "--target_language", help="Set target language", type=str, default="fr")
+    parser.add_argument("-s", "--source_language", help="Set source language. Default: en-US", type=str, default="en-US")
+    parser.add_argument("-t", "--target_language", help="Set target language. Default: fr", type=str, default="fr")
     parser.add_argument("ifile", help="Specify SRT file you want to translate", type=str)
 
     args = parser.parse_args()
